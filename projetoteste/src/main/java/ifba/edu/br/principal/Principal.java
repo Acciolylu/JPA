@@ -5,6 +5,8 @@ import java.util.List;
 import ifba.edu.br.basicas.Categoria;
 import ifba.edu.br.basicas.Cliente;
 import ifba.edu.br.basicas.Endereco;
+import ifba.edu.br.basicas.Produto;
+import ifba.edu.br.basicas.Venda;
 import ifba.edu.br.dao.GetEntityManager;
 import jakarta.persistence.EntityManager;
 
@@ -14,6 +16,11 @@ public class Principal {
     EntityManager em = GetEntityManager.getConnectionJpa();
         Categoria c = new Categoria("Categoria Teste");
         Categoria c2 = new Categoria("teste 2");
+
+         //em.getTransaction().begin();
+        //em.persist(e);
+        //em.getTransaction().commit();
+
 
 
     Endereco e = new Endereco ();
@@ -52,17 +59,28 @@ public class Principal {
        em.getTransaction().commit();
 
 
-List<Cliente> list = em.createQuery("select cli form Cliente cli", Cliente.class).getResultList();
+//List<Cliente> list = em.createQuery("select cli form Cliente cli", Cliente.class).getResultList();
 
        
         
-        System.out.println("Categoria encontrada:" + em.find(Categoria.class,1));
+       // System.out.println("Categoria encontrada:" + em.find(Categoria.class,1));
+
+Produto p1 = new Produto();
+p1.setDescricao("Descrição do produto 1");
+p1.setEstoque(2);
+p1.setValor(10.0);
+
+
+Venda v1 = new Venda();
+v1.setDescricao("nshbdhjw");
+v1.getProdutos().add(p1);
+v1.getVenda().add(v1);
 
         em.getTransaction().begin();
         em.persist(cli);
         em.getTransaction().commit();
 
-        list.forEach(System.out::println);
+        //list.forEach(System.out::println);
 
 
     }

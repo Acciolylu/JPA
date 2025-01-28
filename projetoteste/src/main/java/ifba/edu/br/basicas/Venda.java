@@ -1,6 +1,7 @@
 package ifba.edu.br.basicas;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -27,9 +28,52 @@ public class Venda  implements Serializable {
         joinColumns = @JoinColumn(name = "venda_id"),
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
-    private List<Produto> produtos;
+    private List<Produto> produtos = new ArrayList<>();
 
     private String descricao;
 
+    public Venda() {
+    }
+
+    public Venda(int id, List<Produto> produtos, String descricao) {
+        this.id = id;
+        this.produtos = produtos;
+        this.descricao = descricao;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return "Venda [id=" + id + ", produtos=" + produtos + ", descricao=" + descricao + "]";
+    }
+
+    
 
 }
