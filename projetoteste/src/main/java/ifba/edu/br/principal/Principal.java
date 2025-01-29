@@ -30,7 +30,7 @@ public class Principal {
     e.setCidade("Cidade Teste");
     e.setEstado("Estado Teste");
     e.setNumero("123");
-    e.setCliente(em.find(Cliente.class,1));
+   // e.setCliente(em.find(Cliente.class,1));
 
 
         //em.getTransaction().begin();
@@ -43,7 +43,7 @@ public class Principal {
        cli.setNome("vinicius");
        cli.setCpf("552444222");
        cli.setRg("5656578");
-       cli.setCategoria(em.find(Categoria.class,1));
+    //   cli.setCategoria(em.find(Categoria.class,1));
 
        //cli =  em.find(Cliente.class, 1);
       
@@ -51,13 +51,13 @@ public class Principal {
        cli2.setNome("ana");
        cli2.setCpf("5367433");
        cli2.setRg("233984");
-       cli2.setCategoria(em.find(Categoria.class,2));
+      // cli2.setCategoria(em.find(Categoria.class,2));
 
       
-       em.getTransaction().begin();
+   /*    em.getTransaction().begin();
        em.persist(cli);
        em.getTransaction().commit();
-
+*/
 
 //List<Cliente> list = em.createQuery("select cli form Cliente cli", Cliente.class).getResultList();
 
@@ -74,10 +74,11 @@ p1.setValor(10.0);
 Venda v1 = new Venda();
 v1.setDescricao("nshbdhjw");
 v1.getProdutos().add(p1);
-v1.getVenda().add(v1);
+p1.getVendas().add(v1);
 
         em.getTransaction().begin();
-        em.persist(cli);
+        em.persist(p1);
+        em.persist(v1);
         em.getTransaction().commit();
 
         //list.forEach(System.out::println);

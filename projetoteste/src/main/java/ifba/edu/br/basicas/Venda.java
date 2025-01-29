@@ -22,13 +22,13 @@ public class Venda  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany (mappedBy = "venda",cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(
         name = "venda_produto",
-        joinColumns = @JoinColumn(name = "venda_id"),
+        joinColumns = @JoinColumn(name = "venda_id"), inverseJoinColumns = @JoinColumn(name= "")
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
-    private List<Produto> produtos = new ArrayList<>();
+    private List<Produto> produto = new ArrayList<>();
 
     private String descricao;
 
@@ -37,9 +37,11 @@ public class Venda  implements Serializable {
 
     public Venda(int id, List<Produto> produtos, String descricao) {
         this.id = id;
-        this.produtos = produtos;
+        this.produto = produtos;
         this.descricao = descricao;
     }
+
+    
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -54,11 +56,11 @@ public class Venda  implements Serializable {
     }
 
     public List<Produto> getProdutos() {
-        return produtos;
+        return produto;
     }
 
     public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+        this.produto = produtos;
     }
 
     public String getDescricao() {
@@ -71,7 +73,7 @@ public class Venda  implements Serializable {
 
     @Override
     public String toString() {
-        return "Venda [id=" + id + ", produtos=" + produtos + ", descricao=" + descricao + "]";
+        return "Venda [id=" + id + ", produtos=" + produto + ", descricao=" + descricao + "]";
     }
 
     
